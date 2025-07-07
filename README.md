@@ -1,130 +1,124 @@
-E-Commerce Platform
+# E-Commerce Platform
+
 A simple eCommerce web application built with:
 
-Backend: Node.js (Express), SQLite, JWT Auth, bcrypt
-
-Frontend: React (with hooks)
+**Backend:** Node.js (Express), SQLite, JWT Auth, bcrypt  
+**Frontend:** React (with hooks)
 
 Supports two roles:
 
-🧑‍💼 Admin: Can manage (add, edit, delete) products.
+- **Admin:** Can manage (add, edit, delete) products.
+- **Customer:** Can view products, add to cart, and place orders.
 
-🛍 Customer: Can view products, add to cart, and place orders.
+## Features
 
-🚀 Features
-✅ Authentication
+- **Authentication**  
+    Signup / Login with hashed passwords.  
+    JWT-based authentication (protected routes).
 
-Signup / Login with hashed passwords.
+- **Roles**  
+    Admin and Customer roles with authorization.
 
-JWT-based authentication (protected routes).
+- **Products**  
+    Browse with pagination, search & filter by category.  
+    Admin can add, edit, delete products.
 
-✅ Roles
+- **Cart & Orders**  
+    Customers can add products to cart and place orders.
 
-Admin and Customer roles with authorization.
+- **SQLite DB**  
+    Local database file (`ecommerce.db`) using SQLite.
 
-✅ Products
+- **Security**  
+    Uses Helmet for HTTP headers.  
+    CORS enabled.
 
-Browse with pagination, search & filter by category.
+## Installation & Setup
 
-Admin can add, edit, delete products.
+### Clone & install
 
-✅ Cart & Orders
+```bash
+git clone https://github.com/Sravanikonapalli/e-commerce-api-adaptnxt.git
+cd e-commerce-api(adptnxt)
+```
 
-Customers can add products to cart and place orders.
+### Install backend dependencies
 
-✅ SQLite DB
-
-Local database file (ecommerce.db) using SQLite.
-
-✅ Security
-
-Uses Helmet for HTTP headers.
-
-CORS enabled.
-
-⚙️ Installation & Setup
-📁 Clone & install
-bash
-Copy code
-git clone https://github.com/your-username/ecommerce-app.git
-cd ecommerce-app
-🔧 Install backend dependencies
-bash
-Copy code
+```bash
+cd backend
 npm install
-🚀 Start backend server
-bash
-Copy code
-node index.js
+```
+
+### Start backend server
+
+```bash
+node server.js
+```
 Runs on http://localhost:3000
 
-🌐 Start React frontend
+### Start React frontend
+
 Open another terminal:
 
-bash
-Copy code
-cd client
+```bash
+cd frontend
 npm install
 npm start
+```
 Runs on http://localhost:3001
 
-🔑 API Endpoints
-Endpoint	Method	Auth	Description
-/signup	POST	❌	Signup with { username, password, role }
-/login	POST	❌	Login, returns JWT token
-/products	GET	❌	List products (with page, limit, search, category)
-/products	POST	✅ admin	Add a product
-/products/:id	PUT	✅ admin	Update product
-/products/:id	DELETE	✅ admin	Delete product
-/cart	GET	✅	Get user's cart
-/cart/add	POST	✅	Add product to cart { productId, quantity }
-/cart/remove	POST	✅	Remove from cart { productId }
-/orders	GET	✅	Get user's orders
-/orders	POST	✅	Place an order
+## API Endpoints
 
-🖥 Sample curl commands
-🚀 Signup (customer or admin)
-bash
-Copy code
+| Endpoint         | Method | Auth      | Description                                 |
+|------------------|--------|-----------|---------------------------------------------|
+| /signup          | POST   | No        | Signup with `{ username, password, role }`  |
+| /login           | POST   | No        | Login, returns JWT token                    |
+| /products        | GET    | No        | List products (with page, limit, search, category) |
+| /products        | POST   | Admin     | Add a product                               |
+| /products/:id    | PUT    | Admin     | Update product                              |
+| /products/:id    | DELETE | Admin     | Delete product                              |
+| /cart            | GET    | Yes       | Get user's cart                             |
+| /cart/add        | POST   | Yes       | Add product to cart `{ productId, quantity }` |
+| /cart/remove     | POST   | Yes       | Remove from cart `{ productId }`            |
+| /orders          | GET    | Yes       | Get user's orders                           |
+| /orders          | POST   | Yes       | Place an order                              |
+
+## Sample curl commands
+
+**Signup (customer or admin):**
+```bash
 curl -X POST http://localhost:3000/signup \
 -H "Content-Type: application/json" \
 -d '{"username":"alice", "password":"1234", "role":"customer"}'
-🔐 Login
-bash
-Copy code
+```
+
+**Login:**
+```bash
 curl -X POST http://localhost:3000/login \
 -H "Content-Type: application/json" \
 -d '{"username":"alice", "password":"1234"}'
-📦 Get products
-bash
-Copy code
+```
+
+**Get products:**
+```bash
 curl http://localhost:3000/products
-➕ Add to cart
-bash
-Copy code
+```
+
+**Add to cart:**
+```bash
 curl -X POST http://localhost:3000/cart/add \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer <JWT_TOKEN>" \
 -d '{"productId":1, "quantity":2}'
-🛒 Place order
-bash
-Copy code
+```
+
+**Place order:**
+```bash
 curl -X POST http://localhost:3000/orders \
--H "Authorization: Bearer <JWT_TOKEN>"
-💡 Notes
-The app uses SQLite for simplicity (creates ecommerce.db).
+-H "Authorization: Bearer super_secret_key"
+```
 
-You can inspect it using DB Browser for SQLite.
+## Live Links
 
-For production, you can swap to PostgreSQL, MySQL or another DB.
-
-✨ Future Improvements
-✅ Add refresh tokens
-✅ Better UI for orders
-✅ Product image uploads
-✅ Email notifications
-
-
-livelinks
-
-backend-https://e-commerce-api-adaptnxt.onrender.com
+- Backend: https://e-commerce-api-adaptnxt.onrender.com
+- Frontend: https://e-commerce-api-adaptnxt.vercel.app/
