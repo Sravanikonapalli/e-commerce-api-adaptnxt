@@ -18,7 +18,7 @@ export default function App() {
   }, [token]);
 
  async function refreshCart() {
-  const res = await fetch("http://localhost:3000/cart", {
+  const res = await fetch("https://e-commerce-api-adaptnxt.onrender.com/cart", {
     headers: { Authorization: `Bearer ${token}` }
   });
   const data = await res.json();
@@ -31,7 +31,7 @@ export default function App() {
 }
 
 async function refreshOrders() {
-  const res = await fetch("http://localhost:3000/orders", {
+  const res = await fetch("https://e-commerce-api-adaptnxt.onrender.com/orders", {
     headers: { Authorization: `Bearer ${token}` }
   });
   const data = await res.json();
@@ -64,7 +64,7 @@ async function refreshOrders() {
   );
 
   async function addToCart(productId) {
-    await fetch("http://localhost:3000/cart/add", {
+    await fetch("https://e-commerce-api-adaptnxt.onrender.com/cart/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,12 +9,12 @@ export default function ProductList({ user, token, addToCart, refreshProducts })
   useEffect(() => { loadProducts(); }, [page, search, category]);
 
   async function loadProducts() {
-    const res = await fetch(`http://localhost:3000/products?page=${page}&limit=5&search=${search}&category=${category}`);
+    const res = await fetch(`https://e-commerce-api-adaptnxt.onrender.com/products?page=${page}&limit=5&search=${search}&category=${category}`);
     setProducts(await res.json());
   }
 
   async function deleteProduct(id) {
-    await fetch(`http://localhost:3000/products/${id}`, {
+    await fetch(`https://e-commerce-api-adaptnxt.onrender.com/products/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -50,7 +50,7 @@ export default function ProductList({ user, token, addToCart, refreshProducts })
     const category = prompt("Category", p.category);
     const price = parseFloat(prompt("Price", p.price));
     const stock = parseInt(prompt("Stock", p.stock));
-    await fetch(`http://localhost:3000/products/${p.id}`, {
+    await fetch(`https://e-commerce-api-adaptnxt.onrender.com/products/${p.id}`, {
       method: "PUT",
       headers: { 
         "Content-Type": "application/json",

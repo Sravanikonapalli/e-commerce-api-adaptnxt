@@ -3,7 +3,7 @@ import React from "react";
 export default function Cart({ cart, token, refreshCart, refreshOrders }) {
 
   async function removeFromCart(productId) {
-    await fetch("http://localhost:3000/cart/remove", {
+    await fetch("https://e-commerce-api-adaptnxt.onrender.com/cart/remove", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export default function Cart({ cart, token, refreshCart, refreshOrders }) {
   }
 
   async function placeOrder() {
-    await fetch("http://localhost:3000/orders", {
+    await fetch("https://e-commerce-api-adaptnxt.onrender.com/orders", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` }
     });

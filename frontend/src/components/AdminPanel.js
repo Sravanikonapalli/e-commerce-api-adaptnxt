@@ -4,7 +4,7 @@ export default function AdminPanel({ token, refreshProducts }) {
   async function addProduct(e) {
     e.preventDefault();
     const { name, category, price, stock } = e.target;
-    await fetch("http://localhost:3000/products", {
+    await fetch("https://e-commerce-api-adaptnxt.onrender.com/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

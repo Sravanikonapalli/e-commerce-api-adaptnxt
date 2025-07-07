@@ -11,7 +11,7 @@ export default function AuthForm({ setUser, setToken }) {
     try {
       if (isSignup) {
         // SIGNUP flow
-        const res = await fetch("http://localhost:3000/signup", {
+        const res = await fetch("https://e-commerce-api-adaptnxt.onrender.com/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password, role })
@@ -23,7 +23,7 @@ export default function AuthForm({ setUser, setToken }) {
       }
 
       // LOGIN flow
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch("https://e-commerce-api-adaptnxt.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

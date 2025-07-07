@@ -123,3 +123,8 @@ For production, you can swap to PostgreSQL, MySQL or another DB.
 ✅ Better UI for orders
 ✅ Product image uploads
 ✅ Email notifications
+
+
+livelinks
+
+backend-https://e-commerce-api-adaptnxt.onrender.com
