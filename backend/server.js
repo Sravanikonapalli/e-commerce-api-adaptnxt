@@ -11,9 +11,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
-PORT=7002
+
 const SECRET_KEY = "super_secret_key";
-const PORT = PORT || 3000;
+const PORT = process.env.PORT || 7002;
 
 let db;
 const dbPath = path.join(__dirname, "ecommerce.db");
@@ -78,10 +78,9 @@ const initializeDbAndServer = async () => {
       );
     `);
 
-    app.listen(PORT, () =>
-      console.log(`Server running on port ${PORT}`)
+    app.listen(PORT, "0.0.0.0", () =>
+      console.log(`Server running on port http://localhost:${PORT}`)
     );
-
   } catch (e) {
     console.log(`DB Error: ${e.message}`);
     process.exit(1);
@@ -124,7 +123,11 @@ app.post("/login", async (req, res) => {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
-  const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, SECRET_KEY, { expiresIn: "1h" });
+  const token = jwt.sign(
+    { id: user.id, username: user.username, role: user.role },
+    SECRET_KEY,
+    { expiresIn: "1h" }
+  );
   res.json({ token });
 });
 
