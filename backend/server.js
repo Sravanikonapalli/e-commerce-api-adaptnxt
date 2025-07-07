@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-const SECRET_KEY = "d3e645fd6257c876d621c4d75f70f0bf1724c44b5be3595955b744afdbe6a412";
+const SECRET_KEY = "super_secret_key";
+const PORT = process.env.PORT || 3000;
 
 let db;
 const dbPath = path.join(__dirname, "ecommerce.db");
@@ -77,9 +78,10 @@ const initializeDbAndServer = async () => {
       );
     `);
 
-    app.listen(3000, () =>
-      console.log("Server running at http://localhost:3000")
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
     );
+
   } catch (e) {
     console.log(`DB Error: ${e.message}`);
     process.exit(1);
