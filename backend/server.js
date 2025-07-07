@@ -11,9 +11,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
-
+PORT=7002
 const SECRET_KEY = "super_secret_key";
-const PORT = process.env.PORT || 3000;
+const PORT = PORT || 3000;
 
 let db;
 const dbPath = path.join(__dirname, "ecommerce.db");
