@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-const SECRET_KEY = "super_secret_key";
+const SECRET_KEY = "d3e645fd6257c876d621c4d75f70f0bf1724c44b5be3595955b744afdbe6a412";
 
 let db;
 const dbPath = path.join(__dirname, "ecommerce.db");
